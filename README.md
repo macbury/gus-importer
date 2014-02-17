@@ -1,6 +1,6 @@
 # Gus::Importer
 
-TODO: Write a gem description
+Simple gem for extracting data from gus XML
 
 ## Installation
 
@@ -18,8 +18,17 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+``` ruby
+Gus::Importer::ProvinceParser.parse(file) do |name, uuid|
+  puts "#{name} => #{uuid}"
+end
+```
 
+``` ruby
+Gus::Importer::StreetsParser.parse(file) do |street|
+  puts "#{street.feature} #{street.second_name} #{street.name} => #{street.uuid}, #{street.city_uuid}"
+end
+```
 ## Contributing
 
 1. Fork it ( http://github.com/<my-github-username>/gus-importer/fork )
