@@ -4,6 +4,7 @@ require "tempfile"
 require "net/http"
 require "libxml"
 require "gus/importer/province"
+require "gus/importer/streets"
 require "pry"
 module Gus
   module Importer
