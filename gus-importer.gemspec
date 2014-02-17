@@ -6,11 +6,11 @@ require 'gus/importer/version'
 Gem::Specification.new do |spec|
   spec.name          = "gus-importer"
   spec.version       = Gus::Importer::VERSION
-  spec.authors       = ["TODO: Write your name"]
+  spec.authors       = ["macbury@gmail.com"]
   spec.email         = ["macbury@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
+  spec.summary       = %q{Simple gem for extracting data from gus XML}
+  spec.description   = %q{Simple gem for extracting data from gus XML}
+  spec.homepage      = "https://github.com/macbury/gus-importer"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
