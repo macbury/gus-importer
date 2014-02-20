@@ -1,18 +1,18 @@
 module Gus::Importer
 
-  class ProvinceParser
+  class HashParser
     include LibXML::XML::SaxParser::Callbacks 
 
     def initialize(callback)
       @callback = callback
+      @hash     = {}
     end
 
     def on_start_element(element, attributes)  
       @current_tag = element.to_sym
 
       if @current_tag == :row
-        @name = ""
-        @uuid = ""
+        @hash = {}
       elsif @current_tag == :col
         @current_attr_name = attributes["name"].to_sym
       end
@@ -23,12 +23,9 @@ module Gus::Importer
     end
      
     def on_characters(chars)
-      if @current_tag == :col
-        if @current_attr_name == :SYM
-          @uuid += chars
-        elsif @current_attr_name == :NAZWA
-          @name += chars
-        end
+      if @current_tag == :col && !@current_attr_name.nil?
+        @hash[@current_attr_name] ||= ""
+        @hash[@current_attr_name] += chars
       end
     end
      
@@ -36,9 +33,8 @@ module Gus::Importer
       if element.to_sym == :row
         @current_tag = nil
 
-        @callback.call(@name, @uuid)
-        @name = ""
-        @uuid = ""
+        @callback.call(@hash)
+        @hash = {}
       end
 
       if element.to_sym == :col
@@ -48,7 +44,7 @@ module Gus::Importer
 
     def self.parse(file_path, &block)
       parser = LibXML::XML::SaxParser.file(file_path)
-      parser.callbacks = ProvinceParser.new(block)
+      parser.callbacks = HashParser.new(block)
       parser.parse
     end
 

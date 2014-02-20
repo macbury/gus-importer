@@ -19,16 +19,11 @@ Or install it yourself as:
 ## Usage
 
 ``` ruby
-Gus::Importer::ProvinceParser.parse(file) do |name, uuid|
-  puts "#{name} => #{uuid}"
+Gus::Importer::HashParser.parse(file) do |name, uuid|
+  => {:WOJ=>"30", :POW=>"27", :GMI=>"01", :RODZ_GMI=>"1", :SYM=>"0949336", :SYM_UL=>"20291", :CECHA=>"ul.", :NAZWA_1=>"Słowackiego", :NAZWA_2=>"Juliusza ", :STAN_NA=>"2014-02-14"}
 end
 ```
 
-``` ruby
-Gus::Importer::StreetsParser.parse(file) do |street|
-  puts "#{street.feature} #{street.second_name} #{street.name} => #{street.uuid}, #{street.city_uuid}"
-end
-```
 ## Contributing
 
 1. Fork it ( http://github.com/<my-github-username>/gus-importer/fork )

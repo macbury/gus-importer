@@ -3,8 +3,7 @@ require "uri"
 require "tempfile"
 require "net/http"
 require "libxml"
-require "gus/importer/province"
-require "gus/importer/streets"
+require "gus/importer/hash_parser"
 require "pry"
 module Gus
   module Importer
